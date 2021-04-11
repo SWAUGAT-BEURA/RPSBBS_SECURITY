@@ -64,6 +64,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startpoint=findViewById(R.id.start);
         endpoint=findViewById(R.id.end);
         btn_journey=findViewById(R.id.journey_tracker);
+        client = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
+        firebaseAuth=FirebaseAuth.getInstance();
+        userId=firebaseAuth.getCurrentUser().getUid();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +76,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .setAction("Action", null).show();
                 danger=true;
                 safe=false;
+                updatesafe(userId,danger,safe);
             }
         });
         FloatingActionButton fab1 = findViewById(R.id.fab1);
@@ -83,6 +87,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         .setAction("Action", null).show();
                 danger=false;
                 safe=true;
+                updatesafe(userId,danger,safe);
             }
         });
 
@@ -101,9 +106,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
-        client = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
-        firebaseAuth=FirebaseAuth.getInstance();
-        userId=firebaseAuth.getCurrentUser().getUid();
+
 
         Dexter.withContext(getApplicationContext())
                 .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -178,6 +181,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         reference=rootnode.getReference(userid);
         reference.child("users").child(userid).child("Latitude").setValue(latitude);
         reference.child("users").child(userid).child("Longitude").setValue(longitude);
+        reference.child("users").child(userid).child("DangerMode").setValue(danger);
+        reference.child("users").child(userid).child("SafeMode").setValue(safe);
+    }
+    private void updatesafe(String userid, Boolean danger, Boolean safe) {
+        rootnode=FirebaseDatabase.getInstance();
+        reference=rootnode.getReference(userid);
         reference.child("users").child(userid).child("DangerMode").setValue(danger);
         reference.child("users").child(userid).child("SafeMode").setValue(safe);
     }
