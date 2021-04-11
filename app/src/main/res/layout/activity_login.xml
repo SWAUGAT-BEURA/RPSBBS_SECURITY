@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+
+    android:gravity="center"
+
+    tools:context=".Login">
+
+
+    <EditText
+        android:id="@+id/et_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter the username"
+        android:gravity="center_horizontal"
+        android:textColorHint="#787171"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/et_email_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter the email-id"
+        android:gravity="center_horizontal"
+        android:textColorHint="#787171"
+        android:inputType="textEmailAddress"/>
+    <EditText
+        android:id="@+id/et_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="enter a password"
+        android:gravity="center_horizontal"
+        android:textColorHint="#787171"
+        android:inputType="textPassword"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_margin="5dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="login"
+                android:onClick="onLoginClicked"
+                android:background="@color/purple_200"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:layout_margin="5dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="Signup"
+                android:onClick="onSignupClicked"
+                android:background="@color/purple_200"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="20dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressbarlogin"
+        android:layout_width="36dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:visibility="invisible">
+
+    </ProgressBar>
+
+
+
+</LinearLayout>
